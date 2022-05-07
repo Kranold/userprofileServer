@@ -51,7 +51,6 @@ router.route('/:id/job').post((req,res) => {
 })
 
 router.route('/:id/jobs/:jobid').patch((req,res) => {
-    console.log("test")
     Persona.findOne(
         { "_id": req.params.id, "jobs._id": req.params.jobid }, 
         { $setField: 

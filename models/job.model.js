@@ -1,11 +1,10 @@
 const mongoose = require('mongoose')
-const Persona = require('../models/persona.model')
+const Persona = require('./persona.model')
 const Schema =  mongoose.Schema
 
-const noteSchema = new Schema({
+const jobSchema = new Schema({
     title: {type: String, required: true},
-    persona: [{ type: MyObjectId, ref: Persona }],
-    description: String,
+    persona: { type: Schema.Types.ObjectId, required: true, ref: "Persona" },
     createdDate : {
         type: Date,
         default: () => Date.now()
@@ -16,5 +15,5 @@ const noteSchema = new Schema({
     }
 })
 
-const Note = mongoose.model('Note', noteSchema)
-module.exports = Note
+const Job = mongoose.model('Job', jobSchema)
+module.exports = Job

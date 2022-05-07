@@ -28,3 +28,6 @@ app.listen(PORT, () => {
  const personaRoutes = require('./controllers/persona.controller')
  app.use('/personas', personaRoutes)
 
+ const jobRoutes = require('./controllers/job.controller')
+ app.use('/jobs', jobRoutes)
+
