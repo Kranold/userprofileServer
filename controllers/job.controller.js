@@ -18,7 +18,6 @@ router.route('/:id').get((req,res) => {
 // Create a new job
 router.route('/').post((req,res) => {
     const newJob = new Job(req.body)
-
     newJob.save()
         .then(job => res.json(job))
         .catch(err => res.status(400).json("Error! " + err))
@@ -37,6 +36,5 @@ router.route('/:id').delete( (req,res) => {
         .then(res.json("Success! Job deleted"))
         .catch(err => res.status(400).json("Error! " + err))
 })
-
 
 module.exports = router
