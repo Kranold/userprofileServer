@@ -11,7 +11,6 @@ const source= process.env.ATLAS_CONNECTION
 const mongoose = require('mongoose')
 const { config } = require('dotenv')
 mongoose.connect(source, {
-
 })
 
 const connection = mongoose.connection
