@@ -8,6 +8,9 @@ const cors = require('cors')
 app.use(cors())
 
 app.options('*', cors());
+app.options('/delete', function(req, res) {
+    res.send(200);
+});
 
 app.use(express.json())
 
