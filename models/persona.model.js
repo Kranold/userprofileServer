@@ -1,9 +1,8 @@
 const mongoose = require('mongoose')
 const Schema =  mongoose.Schema
 
-
 const personaSchema = new Schema({
-    name: {type: String, required: true},
+    name: {type: String},
     title: String,
     quote: String,
     description: String,
