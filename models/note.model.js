@@ -4,7 +4,7 @@ const Schema =  mongoose.Schema
 
 const noteSchema = new Schema({
     title: {type: String, required: true},
-    persona: [{ type: MyObjectId, ref: Persona }],
+    persona: [{ type: Schema.Types.ObjectId, ref: Persona }],
     description: String,
     createdDate : {
         type: Date,

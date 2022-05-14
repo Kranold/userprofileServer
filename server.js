@@ -37,3 +37,6 @@ app.listen(PORT, () => {
  const jobRoutes = require('./controllers/job.controller')
  app.use('/jobs', jobRoutes)
 
+ const noteRoutes = require('./controllers/note.controller')
+ app.use('/notes', noteRoutes)
+
