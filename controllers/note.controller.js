@@ -8,8 +8,15 @@ router.route('/').get((req,res) => {
         .catch(err => res.status(400).json("Error! " + err))
 })
 
-// Get all notes from a persona
+// Get a note by id
 router.route('/:id').get((req,res) => {
+    Note.findById({_id: req.params.id})
+        .then(notes => res.json(notes))
+        .catch(err => res.status(400).json("Error! " + err))
+})
+
+// Get all notes from a persona
+router.route('/persona/:id').get((req,res) => {
     Note.find({persona: req.params.id})
         .then(notes => res.json(notes))
         .catch(err => res.status(400).json("Error! " + err))
