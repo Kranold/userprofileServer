@@ -8,6 +8,14 @@ router.route('/').get((req,res) => {
         .catch(err => res.status(400).json("Error! " + err))
 })
 
+// Get all unique personas IDs 
+router.route('/values').get((req,res) => {
+    Persona.find()
+        .distinct('_id')
+        .then(values => res.json(values))
+        .catch(err => res.status(400).json("Error! " + err))
+})
+
 // Get personas by ID
 router.route('/:id').get((req,res) => {
     Persona.findById({_id: req.params.id})
