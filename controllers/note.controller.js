@@ -1,4 +1,5 @@
 const Note = require('../models/note.model')
+const Persona = require('../models/persona.model')
 const router = require('express').Router()
 
 // Get all notes
@@ -8,10 +9,17 @@ router.route('/').get((req,res) => {
         .catch(err => res.status(400).json("Error! " + err))
 })
 
+// Get all notes with personas
+router.route('/withPersonas').get((req,res) => {
+    Note.find().populate('persona')  
+        .then(allNotes => res.json(allNotes))
+        .catch(err => res.status(400).json("Error! " + err))
+})
+
 // Get a note by id
 router.route('/:id').get((req,res) => {
     Note.findById({_id: req.params.id})
-        .then(notes => res.json(notes))
+        .then(notes => res.json(notes)) 
         .catch(err => res.status(400).json("Error! " + err))
 })
 
