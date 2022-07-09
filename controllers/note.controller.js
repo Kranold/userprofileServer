@@ -1,5 +1,4 @@
 const Note = require('../models/note.model')
-const Persona = require('../models/persona.model')
 const router = require('express').Router()
 
 // Get all notes
