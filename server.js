@@ -1,8 +1,13 @@
 const express = require('express')
 const app = express()
 const stytch = require('stytch')
+const cookieParser = require('cookie-parser');
 require('dotenv').config()
 const mongooseConnect = require('./mongoose')
+
+
+app.use(cookieParser());
+app.use(authenticateStytchSession);
 
 const cors = require('cors')
 app.use(cors())
@@ -20,17 +25,16 @@ const stytchClient = new stytch.Client({
   env:stytch.envs.test
 });
 
-const validateUser = (req,res,next) => {
-  const sessionToken = req.headers.sessiontoken
-  stytchClient.sessions.authenticate({session_token: sessionToken})
-    .then(()=> {
-      next()
-    }).catch((err) => {
-      res.status(401).json(err)
+const authenticateStytchSession = (req, res, next) => {
+  return stytchClient.sessions.authenticate({
+    session_token: req.cookies['stytch_session'],
+  })
+    .then(session => {
+      req.stytchSession = session;
+      return next();
     })
-}
-
-app.use(validateUser)
+    .catch(next)
+} ;
 
 // DB connections
 const PORT = process.env.PORT
